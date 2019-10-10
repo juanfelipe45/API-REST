@@ -1,9 +1,7 @@
 const express = require('express');
 const api = express.Router();
-const multiparty = require('connect-multiparty');
 
 const ImagenController = require('../controllers/imagen');
-const multipartyMiddleware = multiparty({uploadDir: './archivos'});
 
 
 api.get('/imagen', ImagenController.getTodasImagenes);
@@ -14,6 +12,6 @@ api.post('/imagen', ImagenController.saveImagenConAlbum);
 api.put('/imagen/:album/:id', ImagenController.updateImagen);
 api.put('/imagen/:id', ImagenController.updateImagenConAlbum);
 api.delete('/imagen/:id', ImagenController.deleteImagen);
-api.post('/api/subir', multipartyMiddleware, ImagenController.uploadFile);
+api.post('/api/subir', ImagenController.uploadFile);
 
 module.exports = api;

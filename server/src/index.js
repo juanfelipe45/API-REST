@@ -3,7 +3,6 @@
 const cors = require('cors');
 const express = require('express');
 const bodyParser = require ('body-parser');
-const fileUpload = require('express-fileupload');
 
 const app = express();
 
@@ -15,7 +14,6 @@ app.set('port', process.env.PORT || 4000);
 // middlewares
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(fileUpload());
 
 // Cors
 app.use(cors()); 
