@@ -1,6 +1,6 @@
 'use strict'
 const mysql = require('../database/basededatos');
-const fileUpload = require('express-fileupload');
+
 
 function getTodasImagenes(req,res) {
   mysql.query('select * from imagen', (err, results, fields) => {
@@ -40,14 +40,8 @@ function getImagen(req,res) {
 
 function saveImagen(req,res) {
   
-  var { nombre, descripcion } = req.body;
+  var { nombre, descripcion, imagen } = req.body;
   var { album } = req.params;
-  var { EDFile } = req.files;
-
-  EDFile.mv(`../uploads/${EDFile.name0}`, err => {
-    if(err) { res.status(500).send({message: err}); }
-
-  });
 
   if(nombre!="" && descripcion != ""){
 
@@ -59,7 +53,7 @@ function saveImagen(req,res) {
       }
   });
   }else{
-    res.status(404).send({ message: '¡Campos vacios en la inscripción!' });
+    res.status(200).send({ message: '¡Campos vacios en la inscripción!' });
   }
 }
 
