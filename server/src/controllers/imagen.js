@@ -1,5 +1,7 @@
 'use strict'
 const mysql = require('../database/basededatos');
+const multer = require('multer');
+
 
 
 function getTodasImagenes(req,res) {
