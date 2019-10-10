@@ -6,8 +6,7 @@ const utils = require('../services/utils.js')
 
 function getAlbums(req,res) {
   mysql.query('select * from album', (err, results, fields) => {
-    if(!err) res.status(200).send({ albums: results });
-    console.log(results)
+    if(err) res.status(200).send({ albums: results });
     else res.status(500).send({ message: 'Error en la peticion' });
   });
 }
