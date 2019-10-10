@@ -4,7 +4,7 @@ const mysqlConnection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'mialbum'
+    database: 'Mialbum'
 });
 
 mysqlConnection.connect( ( err ) => {
@@ -14,5 +14,6 @@ mysqlConnection.connect( ( err ) => {
     console.log('Base de datos conectada');
   }
 });
+
 
 module.exports = mysqlConnection;
