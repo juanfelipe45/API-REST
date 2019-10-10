@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="cuerpo">
+      <div class="encabezado">
+        <h1 class=" titulo">{{title}}</h1>
+        <div *ngIf="message != ''" class="message">
+            <h3>{{message.message}}</h3>
+        </div>
+      </div>
+      <div  *ngFor="let imagen of Imagenes.Imagenes" class="card">
+        <div class="title"> 
+          <a [routerLink]="[ '/album/imagen/']" class="text">
+            <h1> {{imagen.nombre}}</h1> <br> 
+            <h6>{{imagen.descripcion}}</h6> 
+          </a>
+        </div>
+        <a (click)="onBorrar(imagen.id)">Borrar</a>
+      </div>
+    </div>
+
+    <div class="cards">
+        <div class="card-title">
+          <h1>Registrar una imagen</h1>
+        </div>
+        <div class="card-body">
+          <form method="POST" enctype="multipart/form-data">
+              <div class="control">
+                  <strong><label for="name">Nombre: </label></strong>
+                  <input type="text" [(ngModel)]="Temporal.nombre"  name="name" id="name" class="input" placeholder="Escriba el nombre" required>             
+              </div>
+              <div class="control">
+                  <strong><label for="descripcion">Descripcion: </label></strong>
+                  <input type="text" [(ngModel)]="Temporal.descripcion"  name="descripcion" id="descripcion" class="input" placeholder="Escriba La descrpcion" required>             
+              </div>
+              <div class="controlito">
+                  <strong><label for="name">Imagen: </label></strong>
+                  <input type="file" [(ngModel)]="Temporal.imagen"  name="imagen" id="imagen" class="input" required>             
+              </div>
+              <div class="options">
+                  <button (click)="createImagen()" class="buttom">
+                      Enviar
+                    </button>
+              </div>
+          </form>
+        </div>
+      </div>
+<div>
+  

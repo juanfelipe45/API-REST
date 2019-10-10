@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="cuerpo">
+    <div class="encabezado">
+      <h1 class=" titulo">{{title}}</h1>
+      <div *ngIf="message != ''" class="message">
+          <h3>{{message.message}}</h3>
+      </div>
+    </div>
+    <div  *ngFor="let album of Albums.albums" class="card">
+      <div class="title"> 
+        <a [routerLink]="[ '/album/imagen/', album.id ]" class="text"><h1> {{album.nombre}} </h1> </a>
+        
+      </div>
+      <a (click)="onBorrar(album.id)">Borrar</a>
+    </div>
+  </div>
+
+  <div class="cards">
+    <div class="card-title">
+      <h1>Registrar un album</h1>
+    </div>
+    <div class="card-body">
+      <form method="POST">
+          <div class="control">
+              <strong><label for="name">Nombre: </label></strong>
+              <input type="text" [(ngModel)]="Temporal.nombre"  name="name" id="name" class="input" placeholder="Escriba el nombre" (change)="onFileChange($event)" required>             
+          </div>
+          <div class="options">
+              <button (click)="createAlbums()" class="buttom">
+                  Enviar
+                </button>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
