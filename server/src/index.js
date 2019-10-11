@@ -8,7 +8,7 @@ const app = express();
 
 
 //settings
-app.set('port', process.env.PORT || 1110);
+app.set('port', process.env.PORT || 3000);
 
 
 // middlewares
