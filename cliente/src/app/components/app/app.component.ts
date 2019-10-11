@@ -12,16 +12,23 @@ import { FileUploader } from 'ng2-file-upload';
 export class appComponent implements OnInit {
 
   public title: string = 'Needzaio';
-  private URL: string = 'http://localhost:3000/api/upload';
+  private URL: string = 'http://localhost:3000/api/upload/1';
   public uploader: FileUploader = new FileUploader({url: this.URL, itemAlias: 'imagen'});
+  public message: string = '';
 
-  constructor( private _appService: AppService ) {}
+  //public uploader:any;
+
+  constructor( private _appService: AppService ) {
+    //this.uploader = _appService.upload();
+  }
 
   ngOnInit() {
     this.uploader.onAfterAddingFile = (file) => {file.withCredentials = false; };
     this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
       console.log("Imagen subida", item, status, response, headers);
     }
+
+    //this.uploader;
   }
 
 }

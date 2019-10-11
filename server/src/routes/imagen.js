@@ -13,6 +13,7 @@ api.post('/imagen', ImagenController.saveImagenConAlbum);
 api.put('/imagen/:album/:id', ImagenController.updateImagen);
 api.put('/imagen/:id', ImagenController.updateImagenConAlbum);
 api.delete('/imagen/:id', ImagenController.deleteImagen);
-api.post('/upload', ImagenController.uploadFile);
+api.post('/upload/:id', ImagenController.uploadFile);
+api.get('/upload');
 
 module.exports = api;

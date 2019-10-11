@@ -13,7 +13,7 @@ const routes: Routes = [
     component: AlbumComponent
   },
   {
-    path: 'app',
+    path: 'app/:id',
     component: appComponent
   },
   {

@@ -1,9 +1,13 @@
 'use strict'
 
-const mysql = require('../database/basededatos');
+const fs = require('fs');
+const path = require('path');
 const multer = require('multer');
-var upload = multer({dest: '../uploads/'}).single('imagen');
+const utils = require('../services/utils.js')
+const mysql = require('../database/basededatos');
 
+const DIR = path.resolve('src/uploads/');
+const upload = multer({dest: DIR}).single('imagen');
 
 
 function getTodasImagenes(req,res) {
@@ -131,6 +135,7 @@ function deleteImagen(req, res) {
 
 function uploadFile(req, res, next) { 
   var path = '';
+  var { id } = req.params;
 
   upload(req, res, (err) => {
     if(err) {
@@ -138,7 +143,17 @@ function uploadFile(req, res, next) {
       return res.status(500).send('Error en el servidor');
     }
     path = req.file.path;
-    return res.status(200).send('Actualizacion completa para: ' + path);
+
+    if(utils.verifyString(path)) {
+      mysql.query('updates Imagen set imagen = ? where id = ?',[path,id], (err, results, fields) => {
+        if(err){
+          fs.unlinkSync(path);
+          return res.status(500).send({ message: 'Error en la petición', err });
+        } 
+        else if(utils.verifyString(id)) return res.status(200).send({ message:'Actualizacion completa para: ' + path });
+      });
+    }
+    else return res.status(202).send({message: 'No se pudo hacer el upload'}) 
   });
 }
 

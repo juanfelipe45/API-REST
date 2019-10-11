@@ -9,19 +9,19 @@ export class AppService {
 
   //constantes
   public URL: string;
-  public uploader: FileUploader;
+  public uploader: FileUploader = new FileUploader({ url: this.URL, itemAlias: 'imagen' });
 
   constructor(private _http: HttpClient) { 
     this.URL = 'http://localhost:3000/api/upload';
-    this.uploader = new FileUploader({ url: this.URL, itemAlias: 'imagen' });
   }
 
 
   // Funciones propias
-  upload() {
+  upload(): FileUploader {
     this.uploader.onAfterAddingAll = (file) => { file.withCredentials = false; };
     this.uploader.onCompleteItem = (item:any, res:any, status:any, headers:any) => {
-      console.log("Imagen Actualizada: acutlizada en: ", item, status, res);
+      console.log("Imagen Actualizada: acutlizada en: ", item, status, res+  'aqui');
     }
+    return this.uploader;
   } 
 }
