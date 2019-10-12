@@ -46,6 +46,14 @@ function getImagen(req,res) {
   });
 }
 
+/*function getPicture(req, res){
+  let {id} = req.params;
+  mysql.query('select imagen from Imagen where id = ?' [id], (err, results, fields) => {
+    if(err) return res.status(500).send('Error en el servidor');
+    else if(utils.)
+  });
+}*/
+
 function saveImagen(req,res) {
   
   var { nombre, descripcion, Imagen } = req.body;
@@ -156,6 +164,8 @@ function uploadFile(req, res, next) {
     else return res.status(202).send({message: 'No se pudo hacer el upload'}) 
   });
 }
+
+
 
 module.exports = {
   getTodasImagenes,

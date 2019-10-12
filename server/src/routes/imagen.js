@@ -14,6 +14,6 @@ api.put('/imagen/:album/:id', ImagenController.updateImagen);
 api.put('/imagen/:id', ImagenController.updateImagenConAlbum);
 api.delete('/imagen/:id', ImagenController.deleteImagen);
 api.post('/upload/:id', ImagenController.uploadFile);
-api.get('/upload');
+api.get('/upload/:id');
 
 module.exports = api;
