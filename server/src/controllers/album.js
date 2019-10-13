@@ -5,15 +5,15 @@ const mysql = require('../database/basededatos');
 const utils = require('../services/utils.js')
 
 function getAlbums(req,res) {
-  mysql.query('select * from album', (err, results, fields) => {
-    if(!err) res.status(200).send({ albums: results });
-    else res.status(500).send({ message: 'Error en la peticion' });
+  mysql.query('SELECT * FROM Album', (err, results, fields) => {
+    if(!err){ res.status(200).send({ albums: results });}
+    else res.status(500).send({ message: 'Error en la petición' });
   });
 }
 
 function getAlbum(req,res) {
     let id = req.params.id;
-    mysql.query('select * from album where id = ?', [id], (err, results, fields) => {
+    mysql.query('SELECT * FROM Album WHERE id = ?', [id], (err, results, fields) => {
         if(!err) {
             if(results[0] == null || results[0] == undefined || results[0] == '') {
               res.status(404).send({ message: 'No hay albums'});
@@ -31,7 +31,7 @@ function saveAlbum(req,res) {
   var { nombre } = req.body;
 
   if(utils.verifyString(nombre)){
-    mysql.query('insert into album(nombre) values (?)', [nombre], (err, results, fields) => {
+    mysql.query('insert into Album(nombre) values (?)', [nombre], (err, results, fields) => {
         if(!err) {
             res.status(200).send({ message: '¡Album '+ nombre +' guardado!' });
         }else{
@@ -48,7 +48,7 @@ function updateAlbum(req, res) {
   let { id } = req.params
   var { nombre } = req.body;
 
-  mysql.query('update album set nombre = ? where id = ?', [nombre, id], (err, results, fields) => {
+  mysql.query('update Album set nombre = ? where id = ?', [nombre, id], (err, results, fields) => {
     if(err) {
       res.status(500).send({ message: 'Error en la petición' });
     }else{
@@ -64,7 +64,7 @@ function updateAlbum(req, res) {
 function deleteAlbum(req, res) {
   let { id } = req.params;
 
-  mysql.query('delete from album where id = ?', [id], (err, results, fields) => {
+  mysql.query('delete from Album where id = ?', [id], (err, results, fields) => {
     if(err) {
       res.status(500).send({ message: 'Error en la peteción' });
     }else{
