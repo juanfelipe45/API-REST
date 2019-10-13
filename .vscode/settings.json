@@ -20,6 +20,8 @@
     "todas",
     "imagenes",
     "basededatos",
-    "subir"
+    "subir",
+    "middlewares",
+    "escuchando"
   ]
 }
