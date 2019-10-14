@@ -1,27 +1,28 @@
-import { Injectable } from '@angular/core';
-import { FileUploader } from 'ng2-file-upload';
-import { HttpClient } from '@angular/common/http'
+import { Imagen } from './../../models/imagen';
+import { Injectable, ElementRef } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
 
-  //constantes
+  // constantes
   public URL: string;
-  public uploader: FileUploader = new FileUploader({ url: this.URL, itemAlias: 'imagen' });
 
-  constructor(private _http: HttpClient) { 
-    this.URL = 'http://localhost:3000/api/upload';
-  }
+  constructor(private http: HttpClient, private el: ElementRef) {this.URL = 'http://localhost:3000/api/'; }
 
 
   // Funciones propias
-  upload(): FileUploader {
-    this.uploader.onAfterAddingAll = (file) => { file.withCredentials = false; };
-    this.uploader.onCompleteItem = (item:any, res:any, status:any, headers:any) => {
-      console.log("Imagen Actualizada: acutlizada en: ", item, status, res+  'aqui');
-    }
-    return this.uploader;
-  } 
+  upload(id: string, formData: FormData) {
+      return this.http.post(this.URL + 'upload/' + id, formData);
+  }
+
+  getPicture(id: string): any {
+    return this.http.get(this.URL + 'upload/' + id);
+  }
+
+  saveImagen(imagen: Imagen){
+    return this.http.post(this.URL + 'imagen', imagen);
+  }
 }

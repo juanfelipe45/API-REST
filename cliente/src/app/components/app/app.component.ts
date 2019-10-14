@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { AppService } from '../../services/app/app.service';
+import { Imagen } from './../../models/imagen';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
+import { AppService } from '../../services/app/app.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 
 @Component({
@@ -12,23 +14,53 @@ import { FileUploader } from 'ng2-file-upload';
 export class appComponent implements OnInit {
 
   public title: string = 'Needzaio';
-  private URL: string = 'http://localhost:3000/api/upload/1';
-  public uploader: FileUploader = new FileUploader({url: this.URL, itemAlias: 'imagen'});
-  public message: string = '';
+  public message: any;
+  public picture: any;
+  public Temporal: Imagen = {
+    nombre: '',
+    descripcion: '',
+    album: 1,
+    imagen: null
+  };
 
-  //public uploader:any;
-
-  constructor( private _appService: AppService ) {
-    //this.uploader = _appService.upload();
-  }
+  constructor(
+      private appService: AppService,
+      private route: ActivatedRoute,
+      private el: ElementRef
+    ) {}
 
   ngOnInit() {
-    this.uploader.onAfterAddingFile = (file) => {file.withCredentials = false; };
-    this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
-      console.log("Imagen subida", item, status, response, headers);
-    }
+    this.upload();
+    console.log(this.Temporal);
+  }
 
-    //this.uploader;
+  saveimagen() {
+    this.appService.saveImagen(this.Temporal).subscribe(
+      result => {
+        console.log(result);
+      }
+    );
+    this.upload();
+  }
+
+  upload() {
+    const inputEl: HTMLInputElement = this.el.nativeElement.querySelector('#imagen');
+    const fileCount: number = inputEl.files.length;
+    const formData: FormData = new FormData();
+    this.route.params.forEach((params: Params) => {
+      const id: string = params.id;
+      if (fileCount > 0) {
+        formData.append('imagen', inputEl.files.item(0));
+        this.appService.upload(id, formData).subscribe(
+          result => {
+            this.message = result;
+            console.log('No is bad');
+          }, err => {
+            console.log(err);
+          }
+        );
+      }
+    });
   }
 
 }

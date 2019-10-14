@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AlbumComponent } from './components/album/album.component';
 import { ImagenComponent } from './components/imagen/imagen.component';
-import { HomeComponent } from './components/home/home.component'
+import { HomeComponent } from './components/home/home.component';
 import { appComponent } from './components/app/app.component';
 
 

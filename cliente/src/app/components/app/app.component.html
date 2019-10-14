@@ -1,12 +1,22 @@
 <h1>
     {{title}}
-    
 </h1>
-<form action="POST">
-  <input type="file" name="imagen" ng2FileSelect [uploader]="uploader" />
-  <button type="button" class="btn btn-success btn-s"
-      (click)="uploader.uploadAll()" 
-      [disabled]="!uploader.getNotUploadedItems().length">
-      Upload with ng-2 file uploader
-  </button>
-</form>
+<img src="http://localhost:3000/api/picture/bulldog.jpg" alt="bulldog">
+
+<form method="POST">
+    <input id="imagen" type="file"  required/>
+    <button type="button" class="btn btn-success btn-s"  (click)="upload()">
+      Subir imagen
+    </button>
+  </form>
+
+<form method="POST">
+    <input type="text" name="album" id="album" [(ngModel)]="Temporal.album" >
+    <input type="text" name="nombre" id="nombre" [(ngModel)]="Temporal.nombre">
+    <input type="text" name="descripcion" id="descripcion" [(ngModel)]="Temporal.descripcion">
+    <input id="imagen" name="imagen" type="file"  required [(ngModel)]="Temporal.imagen" />
+    <button type="button" class="btn btn-success btn-s"  (click)="saveimagen()">
+      Subir imagen
+    </button>
+  </form>
+

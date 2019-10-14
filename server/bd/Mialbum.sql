@@ -23,5 +23,6 @@ insert into Imagen values (null, 1, "Doberman", "Es una raza de perro relativame
 insert into Imagen values (null, 2, "Persa", "El Persa es una raza de gato caracterizada por tener una cara ancha y plana y un gran abundante pelaje de variados colores. Son considerados comúnmente como gatos aristocráticos.", null);
 
 select * from Album;
-
-update Imagen set imagen = '/home/needzaio/Desktop/API-REST/server/src/uploads/4132de7008e30b4a1cee4b882772c1b2' where id = '1';
+select * from Imagen;
+select imagen from Imagen where id=1;
+select imagen from Imagen where id = 1;

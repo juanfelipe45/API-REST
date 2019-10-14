@@ -7,9 +7,9 @@
       </div>
     </div>
     <div  *ngFor="let album of Albums.albums" class="card">
-      <div class="title"> 
+      <div class="title">
         <a [routerLink]="[ '/album/imagen/', album.id ]" class="text"><h1> {{album.nombre}} </h1> </a>
-        
+
       </div>
       <a (click)="onBorrar(album.id)">Borrar</a>
     </div>
@@ -23,7 +23,7 @@
       <form method="POST">
           <div class="control">
               <strong><label for="name">Nombre: </label></strong>
-              <input type="text" [(ngModel)]="Temporal.nombre"  name="name" id="name" class="input" placeholder="Escriba el nombre" (change)="onFileChange($event)" required>             
+              <input type="text" [(ngModel)]="Temporal.nombre"  name="name" id="name" class="input" placeholder="Escriba el nombre" required>
           </div>
           <div class="options">
               <button (click)="createAlbums()" class="buttom">

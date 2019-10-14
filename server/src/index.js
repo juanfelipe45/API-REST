@@ -1,8 +1,10 @@
 'use strict'
 
 const cors = require('cors');
+const path = require('path');
 const express = require('express');
 const bodyParser = require ('body-parser');
+
 
 const app = express();
 
@@ -26,6 +28,8 @@ var imagen = require('./routes/imagen');
 app.use('/api', album);
 app.use('/api', imagen);
 
+// statics files
+app.use(express.static(path.join(__dirname, 'uploads')));
 
 // Starting the server
 app.listen(app.get('port'), () => {

@@ -1,34 +1,35 @@
+import { Imagen } from './../../models/imagen';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Imagen } from '../../models/imagen';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ImagenService {
 
-  public url: string;
+  private url: string;
+  private imagen: Imagen;
 
-  constructor(private _http: HttpClient) { this.url = 'http://localhost:3000/api/'; }
+  constructor(private http: HttpClient) { this.url = 'http://localhost:3000/api/'; }
 
 
 
   // Mis funciones
-  getImagen(album: any) {
-    return  this._http.get(this.url+'imagen/'+album);
+  getImagenes(id: string) {
+    return this.http.get(this.url + 'imagen-album/' + id).pipe(map( (data: any) => {
+      console.log('Antes de mapear', data);
+      return data.Imagenes;
+    }));
   }
 
-  createImagen(imagen: Imagen, album) {
-    return  this._http.post(this.url+'imagen/'+ album, imagen);
+  getPicture() {
+    return this.url + 'picture/';
   }
 
-  uploadImage(formData){
-    return this._http.post(this.url+'imagen/', formData);
-  }
-  
-  deleteImagen(id: String) {
-    return this._http.delete(this.url+'imagen/'+id);
-  }
+  saveImagen() {}
 
-
+  upload(formData: FormData) {
+    return this.http.post(this.url + 'imagen', formData);
+}
 }

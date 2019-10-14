@@ -15,14 +15,14 @@ export class AlbumService {
 
   // Mis funciones
   getAlbums() {
-    return  this._http.get(this.url+'album');
+    return  this._http.get(this.url + 'album');
   }
 
   createAlbum(album: Album) {
-    return  this._http.post(this.url+'album', album);
+    return  this._http.post(this.url + 'album', album);
   }
 
-  deleteAlbum(id: String) {
-    return this._http.delete(this.url+'album/'+id);
+  deleteAlbum( id: string ) {
+    return this._http.delete(this.url + 'album/' + id);
   }
 }

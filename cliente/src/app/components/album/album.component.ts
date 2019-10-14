@@ -22,43 +22,43 @@ export class AlbumComponent implements OnInit {
   ngOnInit() {
     console.log('Se han cargado los Albumes');
     this.getAlbums();
-    this.message = "";
+    this.message = '';
   }
 
-  getAlbums(): void{
+  getAlbums(): void {
     this._albumService.getAlbums().subscribe(
       result => {
-        console.log(result)
+        console.log(result);
         this.Albums = result;
-        console.log(this.Albums.albums.length)
+        console.log(this.Albums.albums.length);
       },
       err => {
-        console.log(err)
+        console.log(err);
       }
       );
   }
 
-  createAlbums(): void{
+  createAlbums(): void {
     this._albumService.createAlbum(this.Temporal).subscribe(
       result => {
         this.message = result;
-        console.log(result)
+        console.log(result);
         this.getAlbums();
       },
       err => {
-        console.log(err)
+        console.log(err);
       }
-      );
+    );
   }
 
-  onBorrar(id: String){
+  onBorrar(id: string) {
     console.log(id);
     this._albumService.deleteAlbum(id).subscribe(
       result => {
         this.message = result;
         this.getAlbums();
-    },err =>{
-      console.log(err)
+    }, err => {
+      console.log(err);
     });
   }
 

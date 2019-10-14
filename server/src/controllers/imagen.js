@@ -7,141 +7,102 @@ const utils = require('../services/utils.js')
 const mysql = require('../database/basededatos');
 
 const DIR = path.resolve('src/uploads/');
-const upload = multer({dest: DIR}).single('imagen');
+const storage = multer.diskStorage({
+  destination: DIR,
+  filename: (req, file, callback) =>{
+     callback(null,file.originalname);
+   }
+ });
+const upload = multer({ storage: storage, dest: DIR }).single('imagen');
 
+// Funciones
 
-function getTodasImagenes(req,res) {
-  mysql.query('select * from Imagen', (err, results, fields) => {
-      if(!err) {
-          res.status(200).send({ Imagenes: results });
-      }else{
-          res.status(500).send({ message: 'Error en la peticion' });
-      }
+// Todas las imagenes
+function getImagenes(req, res) {
+  mysql.query('SELECT  album,nombre,descripcion,imagen FROM Imagen ', (err, results, fields) => {
+    if(err) return res.status(500).send({ message: 'Error en el servidor' });
+
+    else if(utils.verifyString(results)) return res.status(200).send({ Imagenes: results });
+
+    else return res.status(404).send({ message: 'No se encontro resultados' });
   });
 }
 
-function getImagenes(req,res) {
-  let album = req.params.album;
-  mysql.query('select * from Imagen where album = ?', [album], (err, results, fields) => {
-      if(!err) {
-          res.status(200).send({ Imagenes: results });
-      }else{
-          res.status(500).send({ message: 'Error en la peticion' });
-      }
+// Imagen especifica
+function getImagen(req, res) {
+  let { id } = req.params;
+
+  mysql.query('SELECT album,nombre,descripcion,imagen FROM Imagen where id = ?', [id], (err, results, fields) => {
+    if(err) return res.status(500).send({ message: 'Error en el servidor', err });
+    
+    else if(utils.verifyString(results)) return res.status(200).send({ Imagen: results });
+
+    else return res.status(404).send({ message: 'No se encontro resultados' });
   });
 }
 
-function getImagen(req,res) {
-  let {album, id} = req.params;
-  mysql.query('select * from Imagen where album = ? and id = ?', [album, id], (err, results, fields) => {
-      if(!err) {
-          if(results[0] == null || results[0] == undefined || results[0] == '') {
-            res.status(404).send({ message: 'No hay imagenes'});
-          }else{
-            res.status(200).send({ album: results[0] });
-          }
-      }else{
-          res.status(500).send({ message: 'Error en la petición' });
-      }
-  });
-}
+  // Imagenes Por album
+  function getImagenesXalbum(req, res){
+    let { id } = req.params;
 
-/*function getPicture(req, res){
-  let {id} = req.params;
-  mysql.query('select imagen from Imagen where id = ?' [id], (err, results, fields) => {
-    if(err) return res.status(500).send('Error en el servidor');
-    else if(utils.)
-  });
-}*/
+    mysql.query('SELECT album,nombre,descripcion,imagen FROM Imagen where album = ?', [id], (err, results, fields) => {
+      if(err) return res.status(500).send({ message: 'Error en el servidor', err });
+    
+      else if(utils.verifyString(results)) return res.status(200).send({ Imagenes: results });
 
-function saveImagen(req,res) {
-  
-  var { nombre, descripcion, Imagen } = req.body;
-  var { album } = req.params;
+      else return res.status(404).send({ message: 'No se encontro resultados' });
+    });
+  } 
 
-  if(nombre!="" && descripcion != ""){
-
-  mysql.query('insert into Imagen(album, nombre, descripcion, Imagen) values (?,?,?,?)', [album, nombre, descripcion, Imagen], (err, results, fields) => {
-      if(!err) {
-            res.status(200).send({ message: 'Dato guardado correctamente' });
-      }else{
-          res.status(500).send({ message: 'Error en la petición' });
-      }
-  });
+function saveImagen(req, res) {
+  var { album, nombre, descripcion } = req.body;
+  if (utils.verifyString(album) && utils.verifyString(nombre) && utils.verifyString(descripcion)){
+    console.log('Aqui?')
+    mysql.query('INSERT INTO Imagen(album,nombre,descripcion) VALUES (?, ?, ?)',[album, nombre, descripcion], (err, results, fields) => {
+      if(err){
+        return res.status(500).send({ message: 'Error en la peticiónes', err });
+      } 
+      else return res.status(200).send({ message:'El dato ha sido añadido'});
+    });
   }else{
-    res.status(200).send({ message: '¡Campos vacios en la inscripción!' });
+    var { albums } = req.params;
+    mysql.query('INSERT INTO Imagen(album,nombre,descripcion) VALUES (?, ?, ?)',[albums, nombre, descripcion], (err, results, fields) => {
+      if(err){
+        return res.status(500).send({ message: 'Error en la petición', err });
+      } 
+      else return res.status(200).send({ message:'El dato ha sido añadido'});
+    });
   }
 }
 
-function saveImagenConAlbum(req,res) {
-  
-  var { album, nombre, descripcion, Imagen } = req.body;
-
-  
-
-  mysql.query('insert into Imagen(album, nombre, descripcion, Imagen) values (?,?,?,?)', [album, nombre, descripcion, Imagen], (err, results, fields) => {
-      if(!err) {
-            res.status(200).send({ message: '!Dato guardado correctamente¡' });
-      }else{
-          res.status(500).send({ message: 'Error en la petición' });
-      }
-  });
-  
-}
-
 function updateImagen(req, res) {
-  let { id, album } = req.params;
-  var { nombre, descripcion, Imagen } = req.body;
-
-
-  mysql.query('update Imagen set Imagen.nombre = ?, Imagen.descripcion = ? , Imagen.Imagen = ? where Imagen.id = ? and Imagen.album = ?', [nombre, descripcion, Imagen, id, album], (err, results, fields) => {
-    if(err) {
-      res.status(500).send({ message: 'Error en la petición' });
-    }else{
-      if(results.changedRows == 1) {
-        res.status(200).send({ message: 'Actualizacion exitosa' });
-      }else {
-        res.status(404).send({ message: 'No se encontro la Imagen' });
-      }
-    }
-  });
-}
-
-function updateImagenConAlbum(req, res) {
-  let { id } = req.params;
-  var { nombre, descripcion, Imagen } = req.body;
-
-  mysql.query('update Imagen set Imagen.nombre = ?, Imagen.descripcion = ? , Imagen.Imagen = ? where Imagen.id = ?', [nombre, descripcion, Imagen, id], (err, results, fields) => {
-    if(err) {
-      res.status(500).send({ message: 'Error en la petición' });
-    }else{
-      if(results.changedRows == 1) {
-        res.status(200).send({ message: 'Actualizacion exitosa' });
-      }else {
-        res.status(404).send({ message: 'No se encontro la Imagen' });
-      }
-    }
-  });
+  var { id } = req.params
+  var { album, nombre, descripcion } = req.body;
+  if (utils.verifyString(album) && utils.verifyString(nombre) && utils.verifyString(descripcion) && utils.verifyString(id)){
+    mysql.query('UPDATE Imagen SET album = ?, nombre = ?,  descripcion = ? WHERE id = ?', [album, nombre, descripcion, id], (err, results, fields) => {
+      if(err) return res.status(500).send({ message: 'Error en la petición', err });
+      else return res.status(200).send({ message:'El dato se ha actualizado'});
+    });
+  }else return res.status(404).send({message: 'No se lleno un campo'});
 }
 
 function deleteImagen(req, res) {
-  let { id } = req.params;
+  var { id } = req.params
+  if(utils.verifyString(id)){
+    mysql.query('DELETE FROM Imagen WHERE id = ?', [id], (err, results, fields) => {
+      if (err) return res.status(500).send({message: 'Error en el servidor'});
+      else return res.status(200).send({message: 'El dato ha sido eliminado'});
+    })
+  }else return res.status(404).send({message: 'No se encontro el id'});
+} 
 
-  mysql.query('delete from Imagen where Imagen.id = ?', [id], (err, results, fields) => {
-    if(err) {
-      res.status(500).send({ message: 'Error en la petición' });
-    }else{
-      if(results.affectedRows == 1){
-        res.status(200).send({ message: 'Se elimino exitosamente el dato' });
-      }else{
-        res.status(404).send({ message: 'No se encontro la Imagen' });
-        console.log(results);
-      }
-    }
-  });
+function getPicture(req, res){
+  var imageFile =  req.params.imageFile;
+  if(utils.verifyString(imageFile))  return res.sendFile(DIR + '/' + imageFile);
+  else return res.status(404).send({message: 'No se encotraron resultados'});
 }
 
-function uploadFile(req, res, next) { 
+function uploadFile (req, res, next) { 
   var path = '';
   var { id } = req.params;
 
@@ -151,9 +112,11 @@ function uploadFile(req, res, next) {
       return res.status(500).send('Error en el servidor');
     }
     path = req.file.path;
-
+    var file_split =  path.split('uploads\\');
+    var file_name = file_split[1];
     if(utils.verifyString(path)) {
-      mysql.query('updates Imagen set imagen = ? where id = ?',[path,id], (err, results, fields) => {
+
+      mysql.query('update Imagen set imagen = ? where id = ?',[file_name,id], (err, results, fields) => {
         if(err){
           fs.unlinkSync(path);
           return res.status(500).send({ message: 'Error en la petición', err });
@@ -161,20 +124,19 @@ function uploadFile(req, res, next) {
         else if(utils.verifyString(id)) return res.status(200).send({ message:'Actualizacion completa para: ' + path });
       });
     }
-    else return res.status(202).send({message: 'No se pudo hacer el upload'}) 
+    else return res.status(202).send({message: 'No se pudo hacer el upload'});
   });
 }
 
 
 
 module.exports = {
-  getTodasImagenes,
-  getImagenes,
   getImagen,
+  uploadFile,
+  getPicture,
   saveImagen,
-  saveImagenConAlbum,
+  getImagenes,
   updateImagen,
-  updateImagenConAlbum,
   deleteImagen,
-  uploadFile
+  getImagenesXalbum
 }
