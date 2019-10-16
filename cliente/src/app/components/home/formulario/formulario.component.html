@@ -1,8 +1,44 @@
 <div class="body" style="background-image: url(../../../../../../assets/nodecasa.jpg); height: 100vh;">
   <div class="lef">
-    Aqui va un texto
+    <p>Aqui va texto</p>
+    <p>Aqui va texto</p>
+    <p>Aqui va texto</p>
+    <p>Aqui va texto</p>
+    <p>Aqui va texto</p>
+    <p>Aqui va texto</p>
+    <p>Aqui va texto</p>
   </div>
   <div class="right">
-    Aqui va el formulario
+      <div class="form">
+        <div class="form-title">
+          <h1>Guadar imagenes</h1>
+        </div>
+        <div class="form-body">
+          <form method="POST">
+            <div class="unidos">
+              <div class="control unidos">
+                <label for="album"><h2>Album:</h2></label>
+                <select name="album" id="album" class="input">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                </select>
+              </div>
+              <div class="control unidos">
+                <label for="nombre"><h2>Nombre:</h2></label>
+                <input type="text" name="nombre" id="nombre" class="input">
+              </div>
+            </div>
+            <div class="control">
+              <label for="descripcion"><h3>Descripción:</h3></label>
+              <input type="text" name="descripcion" id="descripcion" class="input">
+            </div>
+            <div class="control">
+              <label for="descripcion"><h3>Cargar imagen:</h3></label>
+              <input type="file" name="descripcion" id="descripcion" class="file">
+            </div>
+            <input type="button" value="Agregar imagen" class="button">
+          </form>
+        </div>
+      </div>
   </div>
 </div>

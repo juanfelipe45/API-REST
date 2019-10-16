@@ -3,22 +3,24 @@
 
   .lista
     list-style-type: none
-    height: 66px
+    height: 70px
     align-items: center
-    text-align: center
-
+    justify-content: center
+    display: flex
+    margin: 0px 25px
 
     .logo
-      display: inline
-      float: left
+      margin-right: auto
 
     .opciones
       display: inline
       margin-left: 15px
+      position: absolute
 
     .addAlbum
-      display: inline
+      justify-self: right
       float: right
+      margin-left: auto
 
       .button
         background:#DC5803
@@ -27,7 +29,7 @@
         font-size: 20px
         border-radius: 50px 50px
         width: 1000px
-        padding: 12px
+        padding: 12px 35px
         &:hover
           background: #F76100
 
@@ -35,10 +37,10 @@
       display: inline
       text-align: center
       margin: 0 10px 0 0
-      padding-bottom: 30px
+      padding-bottom: 25px
 
       .a
-        padding: 2px 7px 2px 7px
+        padding: 2px 7px
         color: #000000
         text-decoration: none
         &:focus
