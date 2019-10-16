@@ -64,14 +64,17 @@ function saveImagen(req, res) {
       } 
       else return res.status(200).send({ message:'El dato ha sido añadido'});
     });
-  }else{
+  }else if (utils.verifyString(nombre) && utils.verifyString(descripcion)) {
     var { albums } = req.params;
-    mysql.query('INSERT INTO Imagen(album,nombre,descripcion) VALUES (?, ?, ?)',[albums, nombre, descripcion], (err, results, fields) => {
-      if(err){
-        return res.status(500).send({ message: 'Error en la petición', err });
-      } 
-      else return res.status(200).send({ message:'El dato ha sido añadido'});
-    });
+    if (utils.verifyString(albums)) {
+      mysql.query('INSERT INTO Imagen(album,nombre,descripcion) VALUES (?, ?, ?)',[albums, nombre, descripcion], (err, results, fields) => {
+        if(err){
+          return res.status(500).send({ message: 'Error en la petición', err });
+        } 
+        else return res.status(200).send({ message:'El dato ha sido añadido'});
+      });
+    }
+    
   }
 }
 

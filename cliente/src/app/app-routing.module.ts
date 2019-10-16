@@ -1,38 +1,15 @@
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AlbumComponent } from './components/album/album.component';
-import { ImagenComponent } from './components/imagen/imagen.component';
+// Rutas
 import { HomeComponent } from './components/home/home.component';
-import { appComponent } from './components/app/app.component';
 
 
 const routes: Routes = [
   {
-    path: 'album',
-    component: AlbumComponent
-  },
-  {
-    path: 'app/:id',
-    component: appComponent
-  },
-  {
-    path: 'album/imagen/:id',
-    component: ImagenComponent
-  },
-  {
-    path: 'home',
+    path: '',
     component: HomeComponent
-  },
-  {
-    path: 'album/:id',
-    component: AlbumComponent
-  },
-  {
-    path: '**',
-    redirectTo: 'home'
   }
-
 ];
 
 @NgModule({

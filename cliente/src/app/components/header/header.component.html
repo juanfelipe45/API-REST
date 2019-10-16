@@ -1,0 +1,16 @@
+<div class="header">
+  <ul class="lista">
+    <div class="logo">
+      <li class="li"><a href="/"><img src="../../../favicon.ico"></a></li>
+    </div>
+    <div class="opciones">
+      <li [ngClass]="{si: onClick3, no: !onClick3}" class="li"><a (click)="onClickChange3()" class="a" [routerLink]="['']"><b>HOME</b></a></li>
+      <li [ngClass]="{si: onClick2, no: !onClick2}" class="li"><a (click)="onClickChange2()" class="a" href="#"><b>ABOUT US</b></a></li>
+      <li [ngClass]="{si: onClick1, no: !onClick1}" class="li"><a (click)="onClickChange1()" class="a" href="#"><b>CONTACTS</b></a></li>
+      <li [ngClass]="{si: onClick, no: !onClick}" class="li"><a (click)="onClickChange()" class="a" href="#"><b>TYPEGRAPHY</b></a></li>
+    </div>
+    <div class="addAlbum">
+        <li class="li"><a class="button" href="#"><b>addAlbum</b></a></li>
+    </div>
+  </ul>
+</div>
