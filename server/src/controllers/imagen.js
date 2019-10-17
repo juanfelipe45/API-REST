@@ -19,7 +19,7 @@ const upload = multer({ storage: storage, dest: DIR }).single('imagen');
 
 // Todas las imagenes
 function getImagenes(req, res) {
-  mysql.query('SELECT  album,nombre,descripcion,imagen FROM Imagen ', (err, results, fields) => {
+  mysql.query('SELECT  a.nombre album,i.nombre,i.descripcion,i.imagen FROM Imagen i inner join Album a on i.album = a.id', (err, results, fields) => {
     if(err) return res.status(500).send({ message: 'Error en el servidor' });
 
     else if(utils.verifyString(results)) return res.status(200).send({ Imagenes: results });
@@ -57,7 +57,6 @@ function getImagen(req, res) {
 function saveImagen(req, res) {
   var { album, nombre, descripcion } = req.body;
   if (utils.verifyString(album) && utils.verifyString(nombre) && utils.verifyString(descripcion)){
-    console.log('Aqui?')
     mysql.query('INSERT INTO Imagen(album,nombre,descripcion) VALUES (?, ?, ?)',[album, nombre, descripcion], (err, results, fields) => {
       if(err){
         return res.status(500).send({ message: 'Error en la peticiónes', err });
