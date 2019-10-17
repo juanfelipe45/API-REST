@@ -1,7 +1,7 @@
 <div class="body" style="background-image: url(../../../../../../assets/nodecasa.jpg); height: 100vh;">
   <div class="lef">
-    <div class="title">
-      <h1>APLICACIÓN PARA GUARDAR ALBUMES CON IMAGENES</h1>
+    <div class="bienvenida">
+      <h1 class="title">APLICACIÓN PARA GUARDAR ALBUMES CON IMAGENES</h1>
       <p class="subtitle">Imagenes</p>
       <p class="parrafo">
         Esta es una aplicación en donde tu podras crear
@@ -10,7 +10,7 @@
         También podras visualizar todas las imagenes que tienes subidas
         editarlas y personalizar su contenido con un nombre y una descripción.
       </p>
-      <a href="#" class="readMore">Leer mas</a>
+      <a href="#" class="readMore">LEER MÁS</a>
     </div>
   </div>
   <div class="right">
@@ -22,13 +22,13 @@
           <form method="POST">
             <div class="unidos">
               <div class="control unidos">
-                <label for="album"><h2>Album:</h2></label>
+                <label for="album"><h3>Album:</h3></label>
                 <select name="album" id="album" class="input" [(ngModel)]="imagen.album">
                   <option *ngFor="let alb of album" value="{{alb.id}}">{{alb.nombre}}</option>
                 </select>
               </div>
               <div class="control unidos">
-                <label for="nombre"><h2>Nombre:</h2></label>
+                <label for="nombre"><h3>Nombre:</h3></label>
                 <input type="text" name="nombre" id="nombre" class="input" [(ngModel)]="imagen.nombre">
               </div>
             </div>
@@ -38,7 +38,10 @@
             </div>
             <div class="control">
               <label for="imagen"><h3>Cargar imagen:</h3></label>
-              <input type="file" name="imagen" id="imagen " class="file">
+                <div class="botonImg">
+                  <input type="file" name="imagen" id="imagen " class="inputImg">
+                  <div class="examinar">Examinar</div>
+                </div>
             </div>
             <input type="button" value="Agregar imagen" class="button" (click)="saveImagen()">
           </form>
