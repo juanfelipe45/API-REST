@@ -33,12 +33,12 @@
               </div>
             </div>
             <div class="control">
-              <label for="descripcion"><h3>Descripción:</h3></label>
+              <label for="descripcion"><h2>Descripción:</h2></label>
               <input type="text" name="descripcion" id="descripcion" class="input" [(ngModel)]="imagen.descripcion" >
             </div>
             <div class="control">
-              <label for="imagen"><h3>Cargar imagen:</h3></label>
-              <input type="file" name="imagen" id="imagen " class="file">
+              <label for="imagen"><h2>Cargar imagen:</h2></label>
+              <input id="imagen" name="imagen" type="file"  required  />
             </div>
             <input type="button" value="Agregar imagen" class="button" (click)="saveImagen()">
           </form>
