@@ -3,5 +3,5 @@ export interface Imagen {
   'album'?: string;
   'nombre': string;
   'descripcion': string;
-  'imagen': string;
+  'imagen': any;
 }

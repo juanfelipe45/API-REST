@@ -56,25 +56,36 @@ function getImagen(req, res) {
 
 function saveImagen(req, res) {
   var { album, nombre, descripcion } = req.body;
-  if (utils.verifyString(album) && utils.verifyString(nombre) && utils.verifyString(descripcion)){
-    mysql.query('INSERT INTO Imagen(album,nombre,descripcion) VALUES (?, ?, ?)',[album, nombre, descripcion], (err, results, fields) => {
-      if(err){
-        return res.status(500).send({ message: 'Error en la peticiónes', err });
-      } 
-      else return res.status(200).send({ message:'El dato ha sido añadido'});
-    });
-  }else if (utils.verifyString(nombre) && utils.verifyString(descripcion)) {
-    var { albums } = req.params;
-    if (utils.verifyString(albums)) {
-      mysql.query('INSERT INTO Imagen(album,nombre,descripcion) VALUES (?, ?, ?)',[albums, nombre, descripcion], (err, results, fields) => {
-        if(err){
-          return res.status(500).send({ message: 'Error en la petición', err });
-        } 
-        else return res.status(200).send({ message:'El dato ha sido añadido'});
-      });
+  var path = "";
+  upload(req, res, (err) => {
+    if(err){
+      console.log(err);
+      return res.status(500).send({ message: 'Error en el servidor' });
     }
-    
-  }
+    path = req.file.path;
+    var file_split = path.split('uploads\\');
+    var file_name = file_split[1];
+    if(utils.verifyString(path)){
+      if (utils.verifyString(album) && utils.verifyString(nombre) && utils.verifyString(descripcion)){
+        mysql.query('INSERT INTO Imagen(album,nombre,descripcion,imagen) VALUES (?, ?, ?, ?)',[album, nombre, descripcion, file_name], (err, results, fields) => {
+          if(err){
+            return res.status(500).send({ message: 'Error en la peticiónes', err });
+          } 
+          else return res.status(200).send({ message:'El dato ha sido añadido'});
+        });
+      }else if (utils.verifyString(nombre) && utils.verifyString(descripcion)) {
+        var { albums } = req.params;
+        if (utils.verifyString(albums)) {
+          mysql.query('INSERT INTO Imagen(album,nombre,descripcion,imagen) VALUES (?, ?, ?, ?)',[albums, nombre, descripcion, file_name], (err, results, fields) => {
+            if(err){
+              return res.status(500).send({ message: 'Error en la petición', err });
+            } 
+            else return res.status(200).send({ message:'El dato ha sido añadido'});
+          });
+        }
+      }
+    }
+  });
 }
 
 function updateImagen(req, res) {
