@@ -1,6 +1,6 @@
 export interface Imagen {
-  'id'?: number;
-  'album'?: number;
+  'id'?: string;
+  'album'?: string;
   'nombre': string;
   'descripcion': string;
   'imagen': string;
