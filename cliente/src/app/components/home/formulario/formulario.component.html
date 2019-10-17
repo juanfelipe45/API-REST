@@ -1,12 +1,17 @@
 <div class="body" style="background-image: url(../../../../../../assets/nodecasa.jpg); height: 100vh;">
   <div class="lef">
-    <p>Aqui va texto</p>
-    <p>Aqui va texto</p>
-    <p>Aqui va texto</p>
-    <p>Aqui va texto</p>
-    <p>Aqui va texto</p>
-    <p>Aqui va texto</p>
-    <p>Aqui va texto</p>
+    <div class="title">
+      <h1>APLICACIÓN PARA GUARDAR ALBUMES CON IMAGENES</h1>
+      <p class="subtitle">Imagenes</p>
+      <p class="parrafo">
+        Esta es una aplicación en donde tu podras crear
+        tus propios albumes, dandote la oportunidad de elegir
+        cual es el nombre que queda mas adecuado para cada uno de ellos.
+        También podras visualizar todas las imagenes que tienes subidas
+        editarlas y personalizar su contenido con un nombre y una descripción.
+      </p>
+      <a href="#" class="readMore">Leer mas</a>
+    </div>
   </div>
   <div class="right">
       <div class="form">
@@ -18,25 +23,24 @@
             <div class="unidos">
               <div class="control unidos">
                 <label for="album"><h2>Album:</h2></label>
-                <select name="album" id="album" class="input">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
+                <select name="album" id="album" class="input" [(ngModel)]="imagen.album">
+                  <option *ngFor="let alb of album" value="{{alb.id}}">{{alb.nombre}}</option>
                 </select>
               </div>
               <div class="control unidos">
                 <label for="nombre"><h2>Nombre:</h2></label>
-                <input type="text" name="nombre" id="nombre" class="input">
+                <input type="text" name="nombre" id="nombre" class="input" [(ngModel)]="imagen.nombre">
               </div>
             </div>
             <div class="control">
               <label for="descripcion"><h3>Descripción:</h3></label>
-              <input type="text" name="descripcion" id="descripcion" class="input">
+              <input type="text" name="descripcion" id="descripcion" class="input" [(ngModel)]="imagen.descripcion" >
             </div>
             <div class="control">
-              <label for="descripcion"><h3>Cargar imagen:</h3></label>
-              <input type="file" name="descripcion" id="descripcion" class="file">
+              <label for="imagen"><h3>Cargar imagen:</h3></label>
+              <input type="file" name="imagen" id="imagen " class="file">
             </div>
-            <input type="button" value="Agregar imagen" class="button">
+            <input type="button" value="Agregar imagen" class="button" (click)="saveImagen()">
           </form>
         </div>
       </div>
