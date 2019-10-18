@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { ContenidoService } from '../../../services/contenido/contenido.service';
 import { Imagen } from '../../../models/imagen';
@@ -7,7 +7,8 @@ import { Imagen } from '../../../models/imagen';
   selector: 'app-contenido',
   templateUrl: './contenido.component.html',
   styleUrls: ['./contenido.component.sass'],
-  providers: [ContenidoService]
+  providers: [ContenidoService],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class ContenidoComponent implements OnInit {
 

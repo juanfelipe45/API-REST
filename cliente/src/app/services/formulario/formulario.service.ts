@@ -21,12 +21,6 @@ export class FormularioService {
     }));
   }
 
-  upload(id: string, formData: FormData): Observable<string> {
-    return this.http.post(this.url + 'upload/' + id, formData).pipe(map((message: any) => {
-      return message.message;
-    }));
-  }
-
   getAlbums(): Observable<Album[]> {
     return this.http.get(this.url + 'album').pipe(map((data: any) => {
       return data.albums;
