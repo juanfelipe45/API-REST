@@ -1,5 +1,5 @@
-<div class="body" style="background-image: url(../../../../../../assets/nodecasa.jpg); height: 100vh;">
-  <div class="lef">
+<div class="body" style="background-image: url(../../../../../../assets/nodecasa.jpg);">
+  <div class="left">
     <div class="bienvenida">
       <h1 class="title">APLICACIÓN PARA GUARDAR ALBUMES CON IMAGENES</h1>
       <p class="subtitle">Imagenes</p>
@@ -28,7 +28,7 @@
                 <div class="control unidos">
                   <label for="album"><h4>Album:</h4></label>
                     <div class="select">
-                      <select name="album" id="album" class="input" [(ngModel)]="imagen.album">
+                      <select name="album" id="album" class="input album" [(ngModel)]="imagen.album">
                         <option *ngFor="let alb of album" value="{{alb.id}}" class="options"> {{alb.nombre}}</option>
                       </select>
                     </div>
@@ -45,29 +45,14 @@
               <div class="control">
                 <label for="imagen"><h4>Cargar imagen:</h4></label>
                   <div class="botonImg">
-                    <input id="imagen" name="imagen" type="file"  required  class="inputImg"/>
-                    <div class="examinar">EXAMINAR</div>
+                    <input id="imagen" name="imagen" type="file" id="imagen"  required  class="inputImg" accept="image/* " [(ngModel)]="imagen.imagen"/>
+                    <div class="examinar">EXAMINAR</div><label class="path">{{imagen.imagen}}</label>
                   </div>
               </div>
               <div class="button">
                 <a (click)="saveImagen()">AGREGAR IMAGEN</a>
-              </div>  
+              </div>
             </div>
-<<<<<<< HEAD
-            <div class="control">
-              <label for="descripcion"><h2>Descripción:</h2></label>
-              <input type="text" name="descripcion" id="descripcion" class="input" [(ngModel)]="imagen.descripcion" >
-            </div>
-            <div class="control">
-              <label for="imagen"><h3>Cargar imagen:</h3></label>
-                <div class="botonImg">
-                  <input type="file" name="imagen" id="imagen " class="files" required>
-                  <div class="examinar">Examinar</div>
-                </div>
-            </div>
-            <a type="button" class="button" (click)="saveImagen()">Agregar imagen</a>
-=======
->>>>>>> a85b5a262219c509f50610ce827cfbe2cb4a7121
           </form>
         </div>
       </div>

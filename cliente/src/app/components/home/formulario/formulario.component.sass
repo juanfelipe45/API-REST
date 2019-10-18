@@ -3,8 +3,9 @@
   background-repeat: no-repeat
   background-size: cover
   text-align: center
+  height: 100vh
 
-  .lef
+  .left
     display: inline-block
     width: 50%
     height: 85%
@@ -98,12 +99,15 @@
             border: 0
 
             &:focus
-              border-radius: 50px
-              outline: none
               outline-width: 0
               box-shadow: none
               -moz-box-shadow: none
               -webkit-box-shadow: none
+
+          .album
+
+            &:focus
+              border-radius: 20px 20px 0 0
 
           .botonImg
             background: #FFAF0F
@@ -118,12 +122,9 @@
             &:hover
               background: #F0A000
 
-<<<<<<< HEAD
             .files
-=======
             .inputImg
               cursor: pointer
->>>>>>> a85b5a262219c509f50610ce827cfbe2cb4a7121
               opacity: 0
               position: absolute
               margin-left: -50px
@@ -132,24 +133,19 @@
               height: 52px
 
 
-              .examinar
-<<<<<<< HEAD
-                 text-align: center
-=======
-                cursor: pointer
-                height: 18px
-                padding-left: 168px
->>>>>>> a85b5a262219c509f50610ce827cfbe2cb4a7121
+            .examinar
+              cursor: pointer
+              height: 18px
+              display: inline
+              margin-right: 10vh
 
-            
+            .path
+              color: black
+
         .button
           background: #FFAF0F
           text-decoration: none
-<<<<<<< HEAD
-          outline: none
-=======
           text-align: center
->>>>>>> a85b5a262219c509f50610ce827cfbe2cb4a7121
           color: white
           font-size: 3.3vh
           font-family: 'Oswald', sans-serif
@@ -166,10 +162,25 @@
           -webkit-box-shadow: none
           &:hover
             background: #F0A000
-          
-           
-            
 
+@media screen and (max-width: 1200px)
+  .body
+    height: 100%
+    text-align: center
 
+    .right
+      text-align: center
+      width: 100%
+
+    .left
+      text-align: center
+      width: 100%
+
+      .bienvenida
+        width: 100%
+
+@media only screen and (max-width: 505px)
+  .body
+    display: none
 
 
