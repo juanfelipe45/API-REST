@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { ContenidoService } from '../../../services/contenido/contenido.service';
 import { Imagen } from '../../../models/imagen';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-contenido',
@@ -15,9 +16,9 @@ export class ContenidoComponent implements OnInit {
   public imagen: Imagen[];
   public url: string;
 
-  constructor(private contenidoService: ContenidoService) {
+  constructor(private _contenidoService: ContenidoService) {
     this.title = 'MIS IMAGENES';
-    this.url = contenidoService.getUrl();
+    this.url = _contenidoService.getUrl();
    }
 
   ngOnInit() {
@@ -26,7 +27,7 @@ export class ContenidoComponent implements OnInit {
 
   getImagenes(): void {
 
-    this.contenidoService.getImagenes().subscribe(
+   this._contenidoService.getImagenes().pipe(take(1)).subscribe(
       data => {
         console.log('Informacion:', data);
         this.imagen = data;
