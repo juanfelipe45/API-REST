@@ -11,6 +11,9 @@
 
     .logo
       margin-right: auto
+    
+    .menubar
+      display: none
 
     .icono
       width: 100px
@@ -63,5 +66,43 @@
     .si
       border-bottom: 3px solid #FFAF0F
 
+@media screen and ( max-width: 800px )
+  .header
+  
+    .lista
+      background: white
+      width: 80%
+      position: fixed
+      height: 100%
+      margin: 0
+      display: block
 
+      .logo
+        display: none
+
+      .opciones
+        float: none
+        display: block
+        text-align: center
+        margin-left: -6%
+        width: 100%
+
+        .li
+          margin-top: 14%
+          border-bottom: 2px solid #0000007e
+          display: block
+
+          .a
+            background: blue
+            color: white
+
+            .b
+              color: white
+
+        .si
+          border-bottom: 3px solid #FFAF0F
+      
+      .addAlbum
+        display: none
+  
 
