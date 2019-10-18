@@ -7,8 +7,7 @@ import { Imagen } from '../../../models/imagen';
   selector: 'app-contenido',
   templateUrl: './contenido.component.html',
   styleUrls: ['./contenido.component.sass'],
-  providers: [ContenidoService],
-  changeDetection: ChangeDetectionStrategy.Default
+  providers: [ContenidoService]
 })
 export class ContenidoComponent implements OnInit {
 
