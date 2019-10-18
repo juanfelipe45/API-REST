@@ -1,17 +1,21 @@
 <div class="header">
+  <h1 class="gigantTitle">Albumes</h1>
   <h1 class="title">{{title}}</h1>
-  <input type="button" value="{{title}}" class="button">
+    <div class="button">
+      <a>{{title}}</a>
+    </div>  
 </div>
 <div class="list">
   <div *ngFor="let img of imagen"  class="card">
     <div class="card-picture">
       <img src="{{url + img.imagen}}" class="picture">
     </div>
-    <div class="card-title">
-      <h3>{{img.nombre}}</h3>
+    <div class="cardInfo">
+      <h2 class="cardTitle">{{img.nombre}}</h2>
+      <h3 class="cardAlbum">{{img.album}}</h3>
     </div>
-    <div class="card-body">
-      <h2>{{img.album}}</h2>
+    <div class="cardDescription">
+        {{img.descripcion}}
     </div>
   </div>
 </div>
