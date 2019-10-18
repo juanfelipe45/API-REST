@@ -9,10 +9,10 @@
       </a>
     </div>
     <div class="opciones">
-      <li [ngClass]="{si: onClick3, no: !onClick3}" class="li"><a (click)="onClickChange3()" class="a" [routerLink]="['']"><b>HOME</b></a></li>
-      <li [ngClass]="{si: onClick2, no: !onClick2}" class="li"><a (click)="onClickChange2()" class="a" href="#"><b>ABOUT US</b></a></li>
-      <li [ngClass]="{si: onClick1, no: !onClick1}" class="li"><a (click)="onClickChange1()" class="a" href="#"><b>CONTACTS</b></a></li>
-      <li [ngClass]="{si: onClick, no: !onClick}" class="li"><a (click)="onClickChange()" class="a" href="#"><b>TYPEGRAPHY</b></a></li>
+      <li [ngClass]="{si: onClick3, no: !onClick3}" class="li"><a (click)="onClickChange3()" class="a" [routerLink]="['']"><b [ngClass]="{b: onClick3, a: !onClick3}">HOME</b></a></li>
+      <li [ngClass]="{si: onClick2, no: !onClick2}" class="li"><a (click)="onClickChange2()" class="a" href="#"><b [ngClass]="{b: onClick2, a: !onClick2}">ABOUT US</b></a></li>
+      <li [ngClass]="{si: onClick1, no: !onClick1}" class="li"><a (click)="onClickChange1()" class="a" href="#"><b [ngClass]="{b: onClick1, a: !onClick1}">CONTACTS</b></a></li>
+      <li [ngClass]="{si: onClick, no: !onClick}" class="li"><a (click)="onClickChange()" class="a" href="#"><b [ngClass]="{b: onClick, a: !onClick}">TYPEGRAPHY</b></a></li>
     </div>
     <div class="addAlbum">
         <li class="li"><a class="button" href="#"><b>ADD ALBUM</b></a></li>
