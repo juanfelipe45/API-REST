@@ -15,14 +15,8 @@ export class FormularioService {
 
   constructor(private http: HttpClient) { this.url = 'http://localhost:3000/api/'; }
 
-  saveImagen(imagen: any): Observable<string> {
+  saveImagen(imagen: FormData): Observable<string> {
     return this.http.post(this.url + 'imagen', imagen).pipe(map((message: any) => {
-      return message.message;
-    }));
-  }
-
-  upload(id: string, formData: FormData): Observable<string> {
-    return this.http.post(this.url + 'upload/' + id, formData).pipe(map((message: any) => {
       return message.message;
     }));
   }

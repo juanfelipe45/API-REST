@@ -56,9 +56,6 @@ function getImagen(req, res) {
 
 function saveImagen(req, res) {
   var path = '';
-  const nombre = req.body.nombre;
-  const descripcion = req.body.descripcion;
-  const album = req.body.album;
 
   upload(req, res, (err) => {
     if(err) {
@@ -68,9 +65,7 @@ function saveImagen(req, res) {
     path = req.file.path;
     var file_split =  path.split('uploads\\');
     var count = file_split.length;
-    var file_name = file_split[count -1];
-    console.log(file_name);
-    console.log(req.body.nombre, req.body.descripcion, req.body.album);
+    var file_name =  file_split[count -1];
     if(utils.verifyString(path) && utils.verifyString(req.body.nombre) && utils.verifyString(req.body.descripcion) &&utils.verifyString(req.body.album)) {
       mysql.query('INSERT INTO Imagen(album,nombre,descripcion,imagen) VALUES (?,?,?,?)',[req.body.album,req.body.nombre,req.body.descripcion,file_name], (err, results, fields) => {
         if(err){
