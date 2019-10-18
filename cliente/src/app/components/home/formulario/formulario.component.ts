@@ -55,7 +55,6 @@ export class FormularioComponent implements OnInit {
 
   saveImagen(): void {
     const inputEl: HTMLInputElement = this.elemento.nativeElement.querySelector('#imagen');
-    const nombreEL: HTMLInputElement = this.elemento.nativeElement.querySelector('#nombre');
     const fileCount: number = inputEl.files.length;
     const formData: FormData = new FormData();
     if (fileCount > 0) {
@@ -67,12 +66,12 @@ export class FormularioComponent implements OnInit {
       this.imagen.imagen = formData.get('imagen');
       console.log('El file:', formData);
       this.formularioService.saveImagen(formData).subscribe(
-        result => {
-          console.log(result);
-          this.message = result;
-        }, err => {
-          console.log(err);
-        }
+          result => {
+            console.log(result);
+            this.message = result;
+          }, err => {
+            console.log(err);
+          }
       );
     }
   }
