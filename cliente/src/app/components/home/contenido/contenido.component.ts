@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { ContenidoService } from '../../../services/contenido/contenido.service';
 import { Imagen } from '../../../models/imagen';
