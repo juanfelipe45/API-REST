@@ -47,7 +47,7 @@ export class FormularioComponent implements OnInit {
           result => {
             console.log(result);
             this.message = result;
-            window.location.reload();
+            //window.location.reload();
           }, err => {
             console.log(err);
           }

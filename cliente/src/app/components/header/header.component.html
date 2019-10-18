@@ -3,6 +3,11 @@
     <div class="logo">
       <li class="li"><a href="/"><img src="../../../assets/icono.png" class="icono"></a></li>
     </div>
+    <div class="menubar">
+      <a href="#" class="botonmenu">
+        <span class="iconomenu">MENU</span>
+      </a>
+    </div>
     <div class="opciones">
       <li [ngClass]="{si: onClick3, no: !onClick3}" class="li"><a (click)="onClickChange3()" class="a" [routerLink]="['']"><b>HOME</b></a></li>
       <li [ngClass]="{si: onClick2, no: !onClick2}" class="li"><a (click)="onClickChange2()" class="a" href="#"><b>ABOUT US</b></a></li>
