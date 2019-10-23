@@ -46,8 +46,9 @@
                 <label for="imagen"><h4>Cargar imagen:</h4></label>
                   <div class="botonImg">
                     <input id="imagen" name="imagen" type="file" id="imagen"  required  class="inputImg" accept="image/* " [(ngModel)]="imagen.imagen"/>
-                    <div class="examinar">EXAMINAR</div><label class="path">{{imagen.imagen}}</label>
+                    <div class="examinar">EXAMINAR</div>
                   </div>
+                  <label class="path">{{imagen.imagen}}</label>
               </div>
               <div class="button">
                 <a (click)="saveImagen()">AGREGAR IMAGEN</a>

@@ -72,7 +72,7 @@ function saveImagen(req, res) {
           fs.unlinkSync(path);
           return res.status(500).send({ message: 'Error en la petición', err });
         } 
-        else return res.status(200).send({ message:'Se inserto correctamente el dato' });
+        else return res.status(200).send({ message:'Se inserto correctamente el dato', data: results });
       })
     }
     else return res.status(202).send({message: 'No se pudo hacer el upload'});

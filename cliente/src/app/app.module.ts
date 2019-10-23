@@ -9,6 +9,8 @@ import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FormularioComponent } from './components/home/formulario/formulario.component';
 import { ContenidoComponent } from './components/home/contenido/contenido.component';
+import { ContenidoService } from './services/contenido/contenido.service';
+import { FormularioService } from './services/formulario/formulario.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,7 @@ import { ContenidoComponent } from './components/home/contenido/contenido.compon
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [ContenidoService, FormularioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

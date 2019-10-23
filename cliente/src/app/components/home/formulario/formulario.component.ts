@@ -1,15 +1,15 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, Host, Input, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { Imagen } from './../../../models/imagen';
 import { Album } from '../../../models/album';
 import { FormularioService } from './../../../services/formulario/formulario.service';
+;
 
 @Component({
   selector: 'app-formulario',
   templateUrl: './formulario.component.html',
   styleUrls: ['./formulario.component.sass'],
-  providers: [FormularioService]
 })
 export class FormularioComponent implements OnInit {
 
@@ -22,10 +22,12 @@ export class FormularioComponent implements OnInit {
   };
   public message: string = '';
 
+  @Output() mensajeFormulario = new EventEmitter<Imagen>();
+
   constructor(
     private formularioService: FormularioService,
     private route: ActivatedRoute,
-    private elemento: ElementRef
+    private elemento: ElementRef,
     ) { }
 
   ngOnInit() {
@@ -42,17 +44,24 @@ export class FormularioComponent implements OnInit {
       formData.append('album', this.imagen.album);
       formData.append('nombre', this.imagen.nombre);
       formData.append('descripcion', this.imagen.descripcion);
-      console.log('El file:', formData);
       this.formularioService.saveImagen(formData).subscribe(
           result => {
             console.log(result);
-            this.message = result;
-            //window.location.reload();
+            this.message = result.message;
           }, err => {
             console.log(err);
           }
       );
     }
+    var nombre = this.imagen.imagen.split('\\');
+    var count = nombre.length;
+    nombre = nombre[count-1];
+    this.imagen.imagen = nombre;
+    for (let i = 0; i< this.album.length; i++){
+      if(this.album[i].id == this.imagen.album) { this.imagen.album = this.album[i].nombre; break; }
+    }
+    console.log(this.imagen.imagen);
+    this.mensajeFormulario.emit(this.imagen);
     this.imagen = {
       nombre: '',
       descripcion: '',
@@ -65,12 +74,10 @@ export class FormularioComponent implements OnInit {
     this.formularioService.getAlbums().subscribe(
       data => {
         this.album = data;
-        console.log('La data: ', data);
       }, err => {
         this.message = err;
         console.log(err);
       }
     );
   }
-
 }
