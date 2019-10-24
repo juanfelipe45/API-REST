@@ -92,7 +92,7 @@ function updateImagen(req, res) {
 
 function deleteImagen(req, res) {
   var { id, imagen } = req.params
-  if(utils.verifyString(id)){
+  if(utils.verifyString(id) && utils.verifyString(imagen)) {
     mysql.query('DELETE FROM Imagen WHERE id = ?', [id], (err, results, fields) => {
       if (err) return res.status(500).send({message: 'Error en el servidor'});
       else {
@@ -100,7 +100,7 @@ function deleteImagen(req, res) {
         return res.status(200).send({message: 'El dato ha sido eliminado'});
       }
     })
-  }else return res.status(404).send({message: 'No se encontro el id'});
+  }else return res.status(404).send({message: 'No se encontro la información necesaria'});
 } 
 
 function getPicture(req, res){

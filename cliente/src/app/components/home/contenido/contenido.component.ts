@@ -19,7 +19,6 @@ export class ContenidoComponent implements OnInit {
   constructor(private _contenidoService: ContenidoService) {
     this.title = 'MIS IMAGENES';
     this.url = _contenidoService.getUrl();
-    
    }
 
   ngOnInit() {

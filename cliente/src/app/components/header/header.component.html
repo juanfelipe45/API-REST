@@ -9,10 +9,10 @@
       </a>
     </div>
     <div class="opciones">
-      <li [ngClass]="{'activated': tabActivated == 1}" class="li"><a (click)="changeTab(1)" class="a" [routerLink]="['']"><b class="text">HOME</b></a></li>
-      <li [ngClass]="{'activated': tabActivated == 2}" class="li"><a (click)="changeTab(2)" class="a" href="#"><b class="text">ABOUT US</b></a></li>
-      <li [ngClass]="{'activated': tabActivated == 3}" class="li"><a (click)="changeTab(3)" class="a" href="#"><b class="text">CONTACTS</b></a></li>
-      <li [ngClass]="{'activated': tabActivated == 4}" class="li"><a (click)="changeTab(4)" class="a" href="#"><b class="text">TYPEGRAPHY</b></a></li>
+      <li [ngClass]="{'activated': tabActivated == 1}" class="item-list"><a (click)="changeTab(1)" class="link-item" [routerLink]="['']"><b class="text-item">HOME</b></a></li>
+      <li [ngClass]="{'activated': tabActivated == 2}" class="item-list"><a (click)="changeTab(2)" class="link-item" href="#"><b class="text-item">ABOUT US</b></a></li>
+      <li [ngClass]="{'activated': tabActivated == 3}" class="item-list"><a (click)="changeTab(3)" class="link-item" href="#"><b class="text-item">CONTACTS</b></a></li>
+      <li [ngClass]="{'activated': tabActivated == 4}" class="item-list"><a (click)="changeTab(4)" class="link-item" href="#"><b class="text-item">TYPEGRAPHY</b></a></li>
     </div>
     <div class="addAlbum">
         <li class="li"><a class="button" href="#"><b>ADD ALBUM</b></a></li>

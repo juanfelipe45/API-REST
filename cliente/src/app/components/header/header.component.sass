@@ -11,7 +11,7 @@
 
     .logo
       margin-right: auto
-    
+
     .menubar
       display: none
 
@@ -21,17 +21,16 @@
     .opciones
       display: inline
       margin-left: 15px
-      position: absolute
       padding: 0 90px 0 0
 
-      .li
+      .item-list
 
         &.activated
           border-bottom: 3px solid #FFAF0F
 
-          .a
+          .link-item
 
-            .text
+            .text-item
               color: #FFAF0F
 
     .addAlbum
@@ -52,21 +51,18 @@
         &:hover
           background: #F0A000
 
-    .li
+    .item-list
       display: inline
       text-align: center
       margin: 0 25px 0 0
       padding-bottom: 31px
 
-      .a
+      .link-item
         font-family: 'Oswald', sans-serif
         font-size: 18px
         padding: 2px 7px
         color: #666666
         text-decoration: none
-
-        .b
-          color: #FFAF0F
 
         &:focus
           color: #FFAF0F
@@ -76,12 +72,9 @@
           border-bottom: 3px solid #FFAF0F
           padding-bottom: 30px
 
-    .si
-      border-bottom: 3px solid #FFAF0F
-
 @media screen and ( max-width: 800px )
   .header
-  
+
     .lista
       background: white
       width: 80%
@@ -100,12 +93,12 @@
         margin-left: -6%
         width: 100%
 
-        .li
+        .item-list
           margin-top: 14%
           border-bottom: 2px solid #0000007e
           display: block
 
-          .a
+          .link-item
             background: blue
             color: white
 
@@ -114,8 +107,8 @@
 
         .si
           border-bottom: 3px solid #FFAF0F
-      
+
       .addAlbum
         display: none
-  
+
 
