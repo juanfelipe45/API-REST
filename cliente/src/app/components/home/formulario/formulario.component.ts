@@ -1,10 +1,10 @@
-import { Component, OnInit, ElementRef, Host, Input, Output, EventEmitter } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-
-import { Imagen } from './../../../models/imagen';
+import { Component, ElementRef, EventEmitter, OnInit, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Album } from '../../../models/album';
+import { Imagen } from './../../../models/imagen';
 import { FormularioService } from './../../../services/formulario/formulario.service';
-;
+
+
 
 @Component({
   selector: 'app-formulario',
@@ -32,7 +32,6 @@ export class FormularioComponent implements OnInit {
 
   ngOnInit() {
     this.getAlbums();
-    console.log(this.imagen);
   }
 
   saveImagen(): void {
@@ -46,17 +45,14 @@ export class FormularioComponent implements OnInit {
       formData.append('descripcion', this.imagen.descripcion);
       this.formularioService.saveImagen(formData).subscribe(
           result => {
-            console.log(result);
             this.message = result.message;
             this.imagen.id = result.data.insertId;
-            console.log('el id:',this.imagen.id);
-            var nombre = this.imagen.imagen.split('\\');
-            var count = nombre.length;
-            nombre = nombre[count-1];
+            let nombre = this.imagen.imagen.split('\\');
+            const count = nombre.length;
+            nombre = nombre[count - 1];
             this.imagen.imagen = nombre;
-            console.log('el nombre:', this.imagen.imagen, 'algo:', nombre);
-            for (let i = 0; i< this.album.length; i++){
-              if(this.album[i].id == this.imagen.album) { this.imagen.album = this.album[i].nombre; break; }
+            for (const i  in this.album) {
+              if (this.album[i].id == this.imagen.album) { this.imagen.album = this.album[i].nombre; break; }
             }
             this.mensajeFormulario.emit(this.imagen);
             this.imagen = {
@@ -66,7 +62,7 @@ export class FormularioComponent implements OnInit {
               imagen: ''
             };
           }, err => {
-            console.log(err);
+            this.message = err;
           }
       );
     }

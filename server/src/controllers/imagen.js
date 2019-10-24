@@ -96,7 +96,7 @@ function deleteImagen(req, res) {
     mysql.query('DELETE FROM Imagen WHERE id = ?', [id], (err, results, fields) => {
       if (err) return res.status(500).send({message: 'Error en el servidor'});
       else {
-        fs.unlinkSync(DIR+'/'+imagen);
+        fs.unlinkSync(DIR + '/' + imagen);
         return res.status(200).send({message: 'El dato ha sido eliminado'});
       }
     })
