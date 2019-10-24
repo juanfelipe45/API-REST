@@ -5,18 +5,22 @@
       <a>{{title}}</a>
     </div>
 </div>
-<div class="list">
-  <div *ngFor="let img of imagen"  class="card">
-    <div class="card-picture">
-      <img src="{{url + img.imagen}}" class="picture">
+<div *ngFor="let img of imagen"  class="card">
+  <div class="card-picture">
+    <div class="options-card">
+        <ul class="list">
+          <li class="item-list"><a class="item update"><i class="fas fa-pen"></i></a></li>
+          <li class="item-list"><a class="item delete" (click)="deleteImagen(img.id, img.imagen)"><i class="fas fa-trash"></i></a></li>
+        </ul>
     </div>
-    <div class="cardInfo">
-      <h2 class="cardTitle">{{img.nombre}}</h2>
-      <h3 class="cardAlbum">{{img.album}}</h3>
-    </div>
-    <div class="cardDescription">
-        {{img.descripcion}}
-    </div>
-    <div class="cardFalse"></div>
+    <img src="{{url + img.imagen}}" class="picture">
   </div>
+  <div class="cardInfo">
+    <h2 class="cardTitle">{{img.nombre}}</h2>
+    <h3 class="cardAlbum">{{img.album}}</h3>
+  </div>
+  <div class="cardDescription">
+      {{img.descripcion}}
+  </div>
+  <div class="cardFalse"></div>
 </div>

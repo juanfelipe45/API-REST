@@ -19,7 +19,7 @@ const upload = multer({ storage: storage, dest: DIR }).single('imagen');
 
 // Todas las imagenes
 function getImagenes(req, res) {
-  mysql.query('SELECT  a.nombre album,i.nombre,i.descripcion,i.imagen FROM Imagen i inner join Album a on i.album = a.id', (err, results, fields) => {
+  mysql.query('SELECT  i.id,a.nombre album,i.nombre,i.descripcion,i.imagen FROM Imagen i inner join Album a on i.album = a.id', (err, results, fields) => {
     if(err) return res.status(500).send({ message: 'Error en el servidor' });
 
     else if(utils.verifyString(results)) return res.status(200).send({ Imagenes: results });
@@ -91,11 +91,14 @@ function updateImagen(req, res) {
 }
 
 function deleteImagen(req, res) {
-  var { id } = req.params
+  var { id, imagen } = req.params
   if(utils.verifyString(id)){
     mysql.query('DELETE FROM Imagen WHERE id = ?', [id], (err, results, fields) => {
       if (err) return res.status(500).send({message: 'Error en el servidor'});
-      else return res.status(200).send({message: 'El dato ha sido eliminado'});
+      else {
+        fs.unlinkSync(DIR+'/'+imagen);
+        return res.status(200).send({message: 'El dato ha sido eliminado'});
+      }
     })
   }else return res.status(404).send({message: 'No se encontro el id'});
 } 

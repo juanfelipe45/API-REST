@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  updateImagen(imagen: Imagen){
+  updateList(imagen: Imagen){
 
     this.enviarAcontenido = imagen;
     this.contenido.updatelist(this.enviarAcontenido);

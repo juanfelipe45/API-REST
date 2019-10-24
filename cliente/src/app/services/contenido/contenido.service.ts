@@ -12,12 +12,22 @@ export class ContenidoService {
 
   private url: string;
 
-  constructor(private http: HttpClient) { this.url = 'http://localhost:3000/api/'; }
+  constructor(private _http: HttpClient) { this.url = 'http://localhost:3000/api/'; }
 
   getImagenes(): Observable<Imagen[]> {
-    return this.http.get(this.url + 'imagen').pipe(map((data: any) => {
-      return data.Imagenes;
-    }));
+    return this._http.get(this.url + 'imagen')
+      .pipe(map((data: any) => {
+        return data.Imagenes;
+      })
+    );
+  }
+
+  deleteImagenes(id: string, imagen: string): Observable<string>{
+    return this._http.delete(this.url + 'imagen/' + id + '/' + imagen)
+      .pipe(map((message: any) => {
+        return message.message;
+      })
+    );
   }
 
   getUrl(): string {

@@ -14,6 +14,7 @@ export class ContenidoComponent implements OnInit {
   public title: string;
   public imagen: Imagen[];
   public url: string;
+  public message: string = '';
 
   constructor(private _contenidoService: ContenidoService) {
     this.title = 'MIS IMAGENES';
@@ -38,5 +39,18 @@ export class ContenidoComponent implements OnInit {
 
   updatelist(imagen: Imagen) {
     this.imagen.push(imagen);
+  }
+
+  deleteImagen(id: string, imagen: string){
+    this._contenidoService.deleteImagenes(id, imagen).pipe(take(1)).subscribe(
+      message => {
+        this.message = message;
+        console.log(message);
+        this.imagen = this.imagen.filter(imagen => imagen.id != id);
+      }, err =>{
+        this.message = err;
+        console.log(err);
+      }
+    );
   }
 }

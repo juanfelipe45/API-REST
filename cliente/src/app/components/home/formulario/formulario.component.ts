@@ -48,26 +48,28 @@ export class FormularioComponent implements OnInit {
           result => {
             console.log(result);
             this.message = result.message;
+            this.imagen.id = result.data.insertId;
+            console.log('el id:',this.imagen.id);
+            var nombre = this.imagen.imagen.split('\\');
+            var count = nombre.length;
+            nombre = nombre[count-1];
+            this.imagen.imagen = nombre;
+            console.log('el nombre:', this.imagen.imagen, 'algo:', nombre);
+            for (let i = 0; i< this.album.length; i++){
+              if(this.album[i].id == this.imagen.album) { this.imagen.album = this.album[i].nombre; break; }
+            }
+            this.mensajeFormulario.emit(this.imagen);
+            this.imagen = {
+              nombre: '',
+              descripcion: '',
+              album: '',
+              imagen: ''
+            };
           }, err => {
             console.log(err);
           }
       );
     }
-    var nombre = this.imagen.imagen.split('\\');
-    var count = nombre.length;
-    nombre = nombre[count-1];
-    this.imagen.imagen = nombre;
-    for (let i = 0; i< this.album.length; i++){
-      if(this.album[i].id == this.imagen.album) { this.imagen.album = this.album[i].nombre; break; }
-    }
-    console.log(this.imagen.imagen);
-    this.mensajeFormulario.emit(this.imagen);
-    this.imagen = {
-      nombre: '',
-      descripcion: '',
-      album: '',
-      imagen: ''
-    };
   }
 
   getAlbums(): void {
