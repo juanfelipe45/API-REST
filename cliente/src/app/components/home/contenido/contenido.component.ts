@@ -45,11 +45,9 @@ export class ContenidoComponent implements OnInit {
     this._contenidoService.deleteImagenes(id, imagen).pipe(take(1)).subscribe(
       message => {
         this.message = message;
-        console.log(message);
         this.imagen = this.imagen.filter(imagen => imagen.id != id);
       }, err =>{
         this.message = err;
-        console.log(err);
       }
     );
   }
