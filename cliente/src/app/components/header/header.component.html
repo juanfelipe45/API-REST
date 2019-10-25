@@ -15,7 +15,19 @@
       <li [ngClass]="{'activated': tabActivated == 4}" class="item-list"><a (click)="changeTab(4)" class="link-item" href="#"><b class="text-item">TYPEGRAPHY</b></a></li>
     </div>
     <div class="addAlbum">
-        <li class="li"><a class="button" href="#"><b>ADD ALBUM</b></a></li>
+        <li class="item-list"><a class="button" (click)="modalActivate()"><b>ADD ALBUM</b></a></li>
     </div>
   </ul>
+</div>
+
+
+
+
+<div class="modal-addAlbum" [ngClass]="{'activate': modalAddAlbum}">
+  <button (click)="modalClose()" class="close">x</button><br>
+  <form method="POST" class="form">
+    <label for="name">Nombre:</label>
+    <input type="text" required>
+    <button class="save">Agregar</button>
+  </form>
 </div>

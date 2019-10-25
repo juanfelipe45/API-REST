@@ -80,7 +80,7 @@ function saveImagen(req, res) {
 }
 
 function updateImagen(req, res) {
-  var { id } = req.params
+  var { id } = req.params;
   var { album, nombre, descripcion } = req.body;
   if (utils.verifyString(album) && utils.verifyString(nombre) && utils.verifyString(descripcion) && utils.verifyString(id)){
     mysql.query('UPDATE Imagen SET album = ?, nombre = ?,  descripcion = ? WHERE id = ?', [album, nombre, descripcion, id], (err, results, fields) => {
@@ -91,7 +91,7 @@ function updateImagen(req, res) {
 }
 
 function deleteImagen(req, res) {
-  var { id, imagen } = req.params
+  var { id, imagen } = req.params;
   if(utils.verifyString(id) && utils.verifyString(imagen)) {
     mysql.query('DELETE FROM Imagen WHERE id = ?', [id], (err, results, fields) => {
       if (err) return res.status(500).send({message: 'Error en el servidor'});

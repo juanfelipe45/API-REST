@@ -47,6 +47,7 @@
         border-radius: 50px 50px
         width: 1000px
         padding: 10px 50px
+        cursor: pointer
 
         &:hover
           background: #F0A000
@@ -71,6 +72,32 @@
           color: #FFAF0F
           border-bottom: 3px solid #FFAF0F
           padding-bottom: 30px
+
+.modal-addAlbum
+  display: none
+
+  &.activate
+    display: block
+    position: fixed
+    border: 2px solid black
+    padding: 5px
+    text-align: center
+    width: 50%
+    height: 15%
+    border-radius: 10px
+    top: 25%
+    left: 25%
+    right: 0
+    bottom: 0
+    background-color: rgba(255, 255, 255, 0.7)
+
+    .close
+      background: red
+      color: white
+      float: right
+
+    .form
+      display: flex
 
 @media screen and ( max-width: 800px )
   .header
