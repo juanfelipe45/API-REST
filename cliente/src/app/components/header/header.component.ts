@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   public tabActivated: number = 1;
+  public modalAddAlbum: boolean = false;
+  public title: string = 'hola';
 
   constructor() { }
 
@@ -16,6 +18,14 @@ export class HeaderComponent implements OnInit {
 
   changeTab(tab: number): void {
     this.tabActivated = tab;
+  }
+
+  modalActivate(): void {
+    this.modalAddAlbum = true;
+  }
+
+  modalClose(): void {
+    this.modalAddAlbum = false;
   }
 
 }
