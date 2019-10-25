@@ -13,7 +13,7 @@
     <div class="card-picture">
       <div class="options-card">
           <ul class="list">
-            <li class="item-list"><a class="item update"><i class="fas fa-pen"></i></a></li>
+            <li class="item-list"><a class="item update" (click)="abrirPopup(img.id)"><i class="fas fa-pen"></i></a></li>
             <li class="item-list"><a class="item delete" (click)="deleteImagen(img.id, img.imagen)"><i class="fas fa-trash"></i></a></li>
           </ul>
       </div>
@@ -27,5 +27,44 @@
         {{img.descripcion}}
     </div>
     <div class="cardFalse"></div>
+  </div>
+</div>
+<div [ngClass]="{'activatedpop': popactivated == true}" class="overlay">
+  <div class="popup">
+    <a id="popup-close" class="popup-close" (click)="abrirPopup()">X</a>
+    <h3 class="titulo-pop">Editar Info imagen</h3>
+    <form method="" class="form-pop">
+      <div class="todo">
+        <div class="unidos">
+          <div class="control unidos">
+            <label for="album"><h4>Album:</h4></label>
+              <div class="select">
+                <select name="album" id="album" class="input album" >
+                  <option *ngFor="let alb of album" value="{{alb.id}}" class="options"></option>
+                </select>
+              </div>
+          </div>
+          <div class="control unidos">
+            <label for="nombre"><h4>Nombre:</h4></label>
+            <input type="text" name="nombre" id="nombre" class="input" value="{{imagenM[0].nombre}}">
+          </div>
+        </div>
+        <div class="control">
+          <label for="descripcion"><h4>Descripción:</h4></label>
+          <input type="text" name="descripcion" id="descripcion" class="input" value="{{imagenM[0].descripcion}}" >
+        </div>
+        <div class="control">
+          <label for="imagen"><h4>Cargar imagen:</h4></label>
+            <div class="botonImg">
+              <input id="imagen" name="imagen" type="file" id="imagen"  required  class="inputImg" accept="image/* " [(ngModel)]="imagenM.imagen"/>
+              <div class="examinar">EXAMINAR</div>
+            </div>
+            <label class="path"></label>
+        </div>
+        <div class="button">
+          <a (click)="saveImagen()">AGREGAR IMAGEN</a>
+        </div>
+      </div>
+    </form>
   </div>
 </div>

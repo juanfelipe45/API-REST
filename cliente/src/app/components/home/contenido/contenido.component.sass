@@ -282,8 +282,31 @@
           clear: both
           background: #fdae1077
           width: 100%
-          height: 300px
+          height: 290px
           border-radius: 20px
           object-fit: scale-down
           border: #000000 5px solid
 
+.overlay
+  background-color: rgba(0,0,0,.3)
+  position: fixed
+  display: flex
+  top: 0
+  bottom: 0
+  left: 0
+  right: 0
+  align-items: center
+  justify-content: center
+  visibility: hidden
+  
+  &.activatedpop
+    visibility: visible
+
+    .popup
+      background-color: rgba(255, 255, 255, 0.8)
+      border-radius: 7px
+      height: 80%
+      width: 40%
+      
+      .popup-close
+        cursor: pointer
