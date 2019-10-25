@@ -43,92 +43,255 @@
     &:hover
       background: #F0A000
 
-.card
-  width: 400px
-  height: 370px
-  display: inline-block
-  margin: 0 19px
+.container
+  text-align: center
 
-  .cardInfo
-    font-size: 2.2vh
-    font-family: 'Open Sans', sans-serif
-
-    .cardTitle
-      display: inline
+  .card
+    width: 400px
+    height: 370px
+    display: inline-block
+    margin: 0 19px
 
 
-    .cardAlbum
-      float: right
-      display: inline
-      color: #FFAF0F
+    .cardInfo
+      font-size: 2.2vh
+      font-family: 'Open Sans', sans-serif
 
-  .cardDescription
-    text-justify: auto
-    font-family: 'Open Sans', sans-serif
-    font-size: 11px
+      .cardTitle
+        display: inline
 
-  .cardFalse
-    margin: 0 0 19px 0
-    width: 85%
 
-  .card-picture
-    margin: 40px 0 20px 0
-    clear: both
-    background: #fdae1077
-    border-radius: 20px
-    border: #000000 5px solid
+      .cardAlbum
+        float: right
+        display: inline
+        color: #FFAF0F
 
-    .picture
-      object-fit: scale-down
-      width: 100%
-      height: 300px
+    .cardDescription
+      text-justify: auto
+      font-family: 'Open Sans', sans-serif
+      font-size: 11px
 
-    .options-card
-      display: none
+    .cardFalse
+      margin: 0 0 19px 0
+      width: 85%
 
-    &:hover
+    .card-picture
+      margin: 40px 0 20px 0
+      clear: both
+      background: #fdae1077
+      border-radius: 20px
+      border: #000000 5px solid
+
+      .picture
+        object-fit: scale-down
+        width: 100%
+        height: 300px
 
       .options-card
-        display: block
+        display: none
 
-        .list
-          list-style-type: none
-          display: flex
-          float: right
-          //align-items: center
-          position: absolute
-          margin-left: 17%
-          .item-list
-            margin-right: 2em
-            text-align: center
+      &:hover
 
-            .item
-              text-decoration: none
-              padding: 8px
-              font-size: 3vh
-              color: white
-              cursor: pointer
-              border-radius: 20px
-              margin: 0
+        .options-card
+          display: block
 
+          .list
+            list-style-type: none
+            display: flex
+            float: right
+            //align-items: center
+            position: absolute
+            margin-left: 17%
+            .item-list
+              margin-right: 2em
+              text-align: center
 
-            .delete
-              border: 1px solid red
-              background-color: #d83232f5
+              .item
+                text-decoration: none
+                padding: 8px
+                font-size: 3vh
+                color: white
+                cursor: pointer
+                border-radius: 20px
 
-            .update
-              border: 1px blue
-              background-color: #313ef3f6
+              .delete
+                border: 1px solid red
+                background-color: #d83232f5
 
-.content-message
-  text-align: center
-  color: red
-  display: inline
-  border: 2px solid red
-  border-radius: 20px
-  padding: 5px
-  position: absolute
-  margin-left: 40%
-
-  .message
+              .update
+                border: 1px blue
+                background-color: #313ef3f6
+  .content-message
+    text-align: center
+    color: red
     display: inline
+    border: 2px solid red
+    border-radius: 20px
+    padding: 5px
+    position: absolute
+    margin-left: 40%
+
+    .message
+      display: inline
+
+
+
+
+  @media screen and (max-width: 1200px)
+    .header
+      width: 100%
+      height: 20%
+      margin: 10% 0 5% 0
+      display: flex
+      align-items: center
+
+      .gigantTitle
+        position: absolute
+        font-family:  Verdana, sans-serif
+        font-size: 15vh
+        color: #61616121
+        height: 471px
+        margin-left: 34px
+        letter-spacing: 20px
+        margin-top: 25%
+
+
+      .title
+        margin-left: 100px
+        font-family: 'Oswald', sans-serif
+
+      .button
+        background: #FFAF0F
+        text-decoration: none
+        text-align: center
+        color: white
+        font-size: 3vh
+        font-family: 'Oswald', sans-serif
+        border-radius: 50px
+        padding: 17px 50px
+        cursor: pointer
+        margin: 0 50px 0 auto
+        width: 170px
+        height: 30px
+        &:hover
+          background: #F0A000
+
+    .list
+      width: 100%
+      margin-bottom: 10px
+
+      .card
+        z-index: 1
+        width: 403px
+        height: 373px
+        display: inline-block
+        margin: 0 19px
+
+        .cardInfo
+          font-size: 2.2vh
+          font-family: 'Open Sans', sans-serif
+
+          .cardTitle
+            display: inline
+
+          .cardAlbum
+            float: right
+            display: inline
+            color: #FFAF0F
+
+        .cardDescription
+          text-justify: auto
+          font-family: 'Open Sans', sans-serif
+          font-size: 1em
+
+
+
+        .picture
+          margin: 40px 0 20px 0
+          clear: both
+          background: #fdae1077
+          width: 100%
+          height: 300px
+          border-radius: 20px
+          object-fit: scale-down
+          border: #000000 5px solid
+
+  @media screen and (max-width: 640px)
+    .header
+      width: 100%
+      height: 20%
+      margin: 10% 0 5% 0
+      display: flex
+      align-items: center
+
+      .gigantTitle
+        position: absolute
+        font-family:  Verdana, sans-serif
+        font-size: 7vh
+        color: #61616121
+        height: 471px
+        margin-left: 34px
+        letter-spacing: 20px
+        margin-top: 50%
+
+
+      .title
+        margin-left: 100px
+        font-family: 'Oswald', sans-serif
+
+      .button
+        background: #FFAF0F
+        text-decoration: none
+        text-align: center
+        color: white
+        font-size: 3vh
+        font-family: 'Oswald', sans-serif
+        border-radius: 50px
+        padding: 17px 50px
+        cursor: pointer
+        margin: 0 50px 0 auto
+        width: 170px
+        height: 30px
+        &:hover
+          background: #F0A000
+
+    .list
+      width: 100%
+
+      .card
+        z-index: 1
+        width: 403px
+        height: 373px
+        display: inline-block
+        margin: 0 19px 0 19px
+
+
+
+        .cardInfo
+          font-size: 2.2vh
+          font-family: 'Open Sans', sans-serif
+
+          .cardTitle
+            display: inline
+
+          .cardAlbum
+            float: right
+            display: inline
+            color: #FFAF0F
+
+        .cardDescription
+          font-family: 'Open Sans', sans-serif
+          font-size: 11px
+
+
+
+        .picture
+          margin: 40px 0 20px 0
+          clear: both
+          background: #fdae1077
+          width: 100%
+          height: 300px
+          border-radius: 20px
+          object-fit: scale-down
+          border: #000000 5px solid
+
